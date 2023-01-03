@@ -1,7 +1,7 @@
-from rest_framework import serializers
-from .models import Playlist
+from .serializers_base import PlaylistSerializerBase
+from songs_api.serializers_base import SongSerializerBase
 
-class PlaylistSerializer(serializers.ModelSerializer): # serializers.ModelSerializer just tells django to convert sql to JSON
-    class Meta:
-        model = Playlist # tell django which model to use
-        fields = ('id', 'title', 'author', 'summary',) # tell django which fields to include
+class PlaylistSerializer(PlaylistSerializerBase):
+    songs = SongSerializerBase(many=True)
+    class Meta(PlaylistSerializerBase.Meta):
+        fields = PlaylistSerializerBase.Meta.fields + ('songs',)

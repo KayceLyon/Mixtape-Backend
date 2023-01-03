@@ -9,7 +9,4 @@ class Playlist(models.Model):
     
 
 
-# title
-# author username
-# summary
-# songs will be linked thru playlist id
+
